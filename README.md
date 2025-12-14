@@ -61,25 +61,81 @@ npm run build
 # Previsualizar build de producción
 npm run preview
 
-# Linting del código
-npm run lint
+# Tests unitarios
+npm test
+
+# Tests con cobertura
+npm run test:coverage
+
+# Tests E2E (End-to-End)
+npm run e2e
+
+# Mock server (para E2E)
+npm run mock-server
 ```
+
+## 🧪 Testing
+
+Este proyecto incluye un completo suite de pruebas automatizadas:
+
+- **45 tests unitarios e integración** con Jest y React Testing Library
+- **7 tests E2E** con Selenium WebDriver
+- **Cobertura de código**: >70% en todas las métricas
+- **Mock Server** para pruebas E2E sin dependencias externas
+
+### Ejecutar Tests
+
+```bash
+# Tests unitarios
+npm test
+
+# Tests con watch mode
+npm run test:watch
+
+# Reporte de cobertura
+npm run test:coverage
+
+# Tests End-to-End
+npm run e2e
+```
+
+### Documentación Completa de Testing
+
+Ver documentación detallada en:
+- 📖 **[TESTING.md](TESTING.md)** - Guía completa de testing
+- 📦 **[INSTALL_DEPENDENCIES.md](INSTALL_DEPENDENCIES.md)** - Instalación de dependencias
+- 📋 **[RESUMEN_ENTREGABLES.md](RESUMEN_ENTREGABLES.md)** - Resumen ejecutivo
 
 ## 📁 Estructura del Proyecto
 
 ```
 Cambio_Divisas/
+├── e2e/
+│   ├── app.e2e.test.js          # Tests E2E con Selenium
+│   └── run-e2e.js               # Runner orquestador
 ├── src/
 │   ├── api/
-│   │   └── frankfurter.js       # Llamadas a la API de Frankfurter
+│   │   ├── fetchWithTimeout.js      # Wrapper con timeout
+│   │   ├── fetchWithTimeout.test.js # Tests
+│   │   ├── frankfurter.js           # API de Frankfurter
+│   │   └── frankfurter.test.js      # Tests
 │   ├── storage/
-│   │   └── history.js            # Gestión de localStorage
+│   │   ├── history.js               # localStorage
+│   │   └── history.test.js          # Tests
 │   ├── components/
-│   │   ├── ConverterForm.jsx    # Formulario de conversión
-│   │   └── HistoryTable.jsx     # Tabla de historial
-│   ├── App.jsx                   # Componente principal
-│   └── main.jsx                  # Punto de entrada
+│   │   ├── ConverterForm.jsx        # Formulario
+│   │   ├── ConverterForm.test.jsx   # Tests
+│   │   ├── HistoryTable.jsx         # Tabla historial
+│   │   └── HistoryTable.test.jsx    # Tests
+│   ├── App.jsx                      # Componente principal
+│   ├── App.test.jsx                 # Tests integración
+│   ├── main.jsx                     # Punto de entrada
+│   └── setupTests.js                # Setup Jest
+├── mockServer.js                    # Mock server E2E
+├── jest.config.js                   # Config Jest
+├── babel.config.cjs                 # Config Babel
 ├── package.json
+├── TESTING.md                       # Doc de testing
 └── README.md
 ```
 
@@ -135,11 +191,19 @@ Cada entrada del historial incluye:
 
 ## 🔧 Tecnologías Utilizadas
 
-- **React 18** - Biblioteca UI
+### Producción
+- **React 19** - Biblioteca UI
 - **Vite** - Build tool y dev server
 - **Bootstrap 5** - Framework CSS
 - **Frankfurter API** - Datos de divisas
 - **localStorage** - Persistencia del historial
+
+### Testing y QA
+- **Jest** - Framework de testing
+- **React Testing Library** - Testing de componentes React
+- **Selenium WebDriver** - Tests E2E automatizados
+- **Express** - Mock server para E2E
+- **Babel** - Transformación de JSX para tests
 
 ## 📝 Notas Importantes
 

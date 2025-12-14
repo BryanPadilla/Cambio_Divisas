@@ -65,7 +65,7 @@ function App() {
 
         {/* Error global */}
         {error && (
-          <div className="alert alert-danger alert-dismissible fade show" role="alert">
+          <div className="alert alert-danger alert-dismissible fade show" role="alert" data-testid="global-error">
             <strong>Error:</strong> {error}
             <button 
               type="button" 
@@ -100,7 +100,7 @@ function App() {
 
         {/* Resultado de la conversión */}
         {result && (
-          <div className="row justify-content-center mb-4">
+          <div className="row justify-content-center mb-4" data-testid="conversion-result">
             <div className="col-lg-6">
               <div className="card shadow-sm border-success">
                 <div className="card-body">

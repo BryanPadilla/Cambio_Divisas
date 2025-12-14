@@ -54,6 +54,7 @@ export default function ConverterForm({ currencies, onConvert, isLoading }) {
                 type="number"
                 className="form-control"
                 id="amount"
+                data-testid="amount-input"
                 placeholder="Ej: 100.50"
                 value={amount}
                 onChange={(e) => setAmount(e.target.value)}
@@ -69,6 +70,7 @@ export default function ConverterForm({ currencies, onConvert, isLoading }) {
               <select
                 className="form-select"
                 id="from"
+                data-testid="from-select"
                 value={from}
                 onChange={(e) => setFrom(e.target.value)}
                 disabled={isLoading || !currencies}
@@ -87,6 +89,7 @@ export default function ConverterForm({ currencies, onConvert, isLoading }) {
               <select
                 className="form-select"
                 id="to"
+                data-testid="to-select"
                 value={to}
                 onChange={(e) => setTo(e.target.value)}
                 disabled={isLoading || !currencies}
@@ -104,6 +107,7 @@ export default function ConverterForm({ currencies, onConvert, isLoading }) {
               <button 
                 type="submit" 
                 className="btn btn-primary w-100"
+                data-testid="convert-button"
                 disabled={isLoading}
               >
                 {isLoading ? (
@@ -121,7 +125,7 @@ export default function ConverterForm({ currencies, onConvert, isLoading }) {
 
         {/* Mensaje de error */}
         {error && (
-          <div className="alert alert-danger mt-3 mb-0" role="alert">
+          <div className="alert alert-danger mt-3 mb-0" role="alert" data-testid="error-message">
             {error}
           </div>
         )}

@@ -1,5 +1,8 @@
 // API de Frankfurter para obtener monedas y conversiones
-const BASE_URL = 'https://api.frankfurter.app';
+import { fetchWithTimeout } from './fetchWithTimeout.js';
+
+// Para testing, usar una variable que puedaser sobreescrita
+export let BASE_URL = process.env.VITE_API_BASE_URL || 'https://api.frankfurter.app';
 
 /**
  * Obtiene la lista de monedas disponibles desde la API
@@ -7,7 +10,7 @@ const BASE_URL = 'https://api.frankfurter.app';
  */
 export async function fetchCurrencies() {
   try {
-    const response = await fetch(`${BASE_URL}/currencies`);
+    const response = await fetchWithTimeout(`${BASE_URL}/currencies`, 10000);
     
     if (!response.ok) {
       throw new Error(`Error al obtener monedas: ${response.status}`);
@@ -17,6 +20,9 @@ export async function fetchCurrencies() {
     return currencies;
   } catch (error) {
     console.error('Error en fetchCurrencies:', error);
+    if (error.message === 'Tiempo de espera agotado') {
+      throw error;
+    }
     throw new Error('No se pudieron cargar las monedas. Verifica tu conexión.');
   }
 }
@@ -30,8 +36,9 @@ export async function fetchCurrencies() {
  */
 export async function convertCurrency(amount, from, to) {
   try {
-    const response = await fetch(
-      `${BASE_URL}/latest?amount=${amount}&from=${from}&to=${to}`
+    const response = await fetchWithTimeout(
+      `${BASE_URL}/latest?amount=${amount}&from=${from}&to=${to}`,
+      10000
     );
     
     if (!response.ok) {
@@ -54,6 +61,9 @@ export async function convertCurrency(amount, from, to) {
     };
   } catch (error) {
     console.error('Error en convertCurrency:', error);
+    if (error.message === 'Tiempo de espera agotado') {
+      throw error;
+    }
     throw new Error('Error al realizar la conversión. Inténtalo nuevamente.');
   }
 }

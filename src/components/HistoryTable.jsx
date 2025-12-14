@@ -36,13 +36,14 @@ export default function HistoryTable({ history, onClear }) {
           <button 
             className="btn btn-outline-danger btn-sm"
             onClick={handleClear}
+            data-testid="clear-history-button"
           >
             Limpiar Historial
           </button>
         </div>
 
         <div className="table-responsive">
-          <table className="table table-hover table-sm align-middle">
+          <table className="table table-hover table-sm align-middle" data-testid="history-table">
             <thead className="table-light">
               <tr>
                 <th>Fecha</th>
